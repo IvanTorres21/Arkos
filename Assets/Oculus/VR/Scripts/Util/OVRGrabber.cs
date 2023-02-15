@@ -27,6 +27,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class OVRGrabber : MonoBehaviour
 {
+    public Vector3 beginPosition;
+
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
@@ -274,6 +276,8 @@ public class OVRGrabber : MonoBehaviour
             m_grabbedObj = closestGrabbable;
             m_grabbedObj.GrabBegin(this, closestGrabbableCollider);
 
+            beginPosition = this.transform.position;
+
             m_lastPos = transform.position;
             m_lastRot = transform.rotation;
 
@@ -318,7 +322,7 @@ public class OVRGrabber : MonoBehaviour
             // choose to remove this line in favor of your own collision layer setup.
             SetPlayerIgnoreCollision(m_grabbedObj.gameObject, true);
 
-            if (m_parentHeldObject)
+            if (m_parentHeldObject && !m_grabbedObj.CompareTag("CrawlSpace"))
             {
                 m_grabbedObj.transform.parent = transform;
             }
@@ -348,7 +352,7 @@ public class OVRGrabber : MonoBehaviour
         }
     }
 
-    protected void GrabEnd()
+    public void GrabEnd()
     {
         OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.LHand);
         OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.RHand);
