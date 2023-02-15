@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
         {
             Crawl(left);
         }
+
+        if(newCrawlPosition != Vector3.zero)
+        {
+            if(Vector3.Distance(transform.position, newCrawlPosition) >= .1f)
+            {
+                characterController.Move(direction);
+            }
+        }
     }
 
     public void GetHurt(float damage)
@@ -70,14 +78,18 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Ouch");
     }
 
+
+    private Vector3 newCrawlPosition = Vector3.zero;
+    Vector3 direction;
     private void Crawl(OVRGrabber hand)
     {
-        Vector3 direction = hand.transform.position - hand.beginPosition;
-        
-        if(direction.z >= .5f)
+        direction = hand.transform.position - hand.beginPosition;
+        direction.y = 0;
+
+        if(Vector3.Distance(hand.transform.position, hand.beginPosition) >= .5f)
         {
             hand.GrabEnd();
-            characterController.Move(-direction);
+            newCrawlPosition = transform.position - direction;
         }
 
     }
