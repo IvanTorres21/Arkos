@@ -14,14 +14,9 @@ GameObject:
   - component: {fileID: 8593869405251537475}
   - component: {fileID: 8593869405251537487}
   - component: {fileID: -9156821760508549778}
-<<<<<<< HEAD
-  - component: {fileID: -6530293181844310309}
-  m_Layer: 12
-=======
   - component: {fileID: -177603425035059025}
-  m_Layer: 0
->>>>>>> 8fe88b32d6450f77f5e010210a7e0fe7fa2100d5
-  m_Name: Bullet
+  m_Layer: 6
+  m_Name: Bullet 1
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,11 +158,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-<<<<<<< HEAD
-  m_Time: 0.1
-=======
   m_Time: 0.05
->>>>>>> 8fe88b32d6450f77f5e010210a7e0fe7fa2100d5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.05
@@ -224,11 +215,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
-<<<<<<< HEAD
---- !u!114 &-6530293181844310309
-=======
 --- !u!114 &-177603425035059025
->>>>>>> 8fe88b32d6450f77f5e010210a7e0fe7fa2100d5
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,10 +224,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8593869405251537472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 063f6601e64e756499c17db446a492ba, type: 3}
-=======
   m_Script: {fileID: 11500000, guid: 5eefb4c2c68abd94cbb3ce75d3dd0acf, type: 3}
->>>>>>> 8fe88b32d6450f77f5e010210a7e0fe7fa2100d5
   m_Name: 
   m_EditorClassIdentifier: 

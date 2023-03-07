@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ParasiteBehaviour
 {
-    public enum STATE { 
+    protected enum STATE { 
         IDLE,
         PURSUE,
         JUMP,
@@ -16,7 +16,7 @@ public class ParasiteBehaviour
         RECOVER
     }
 
-    public STATE name;
+    protected STATE name;
     protected EVENT stage;
     protected ParasiteBehaviour nextState;
 
