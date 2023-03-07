@@ -27,7 +27,7 @@ public class ParasiteBehaviour
     protected NavMeshAgent agent;
     protected OVRGrabbable grabbable;
 
-    protected float pursueRange = 10f;
+    protected float pursueRange = 40f;
 
     public ParasiteBehaviour(GameObject npc, Transform player, Animator anim, NavMeshAgent agent, OVRGrabbable grabbable, Transform playerFace)
     {
@@ -45,6 +45,7 @@ public class ParasiteBehaviour
 
     public ParasiteBehaviour Process()
     {
+        Debug.Log("Name " + name);
         if (stage == EVENT.ENTER) Enter();
         if (stage == EVENT.UPDATE) Update();
         if (stage == EVENT.EXIT)
@@ -61,9 +62,20 @@ public class ParasiteBehaviour
 
         float angle = Vector3.Angle(npc.transform.forward, direction);
 
-        if (Vector3.Distance(player.position, npc.transform.position) < pursueRange && angle < 90f)
+        Debug.Log(angle);
+
+        if (Vector3.Distance(player.position, npc.transform.position) < pursueRange && angle > 90f)
         {
-            return true;
+            Ray ray = new Ray(npc.transform.position, direction);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit, 40f, 1 << 3))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
         return false;
@@ -316,6 +328,7 @@ public class ParasiteGrabbing : ParasiteBehaviour
 
     public override void Enter()
     {
+        npc.GetComponent<AudioSource>().Play();
         anim.SetTrigger("IsGrabbing");
         npc.transform.GetChild(1).gameObject.SetActive(true);
         base.Enter();
@@ -323,6 +336,7 @@ public class ParasiteGrabbing : ParasiteBehaviour
 
     public override void Exit()
     {
+        npc.GetComponent<AudioSource>().Stop();
         anim.ResetTrigger("IsGrabbing");
         npc.transform.GetChild(1).gameObject.SetActive(false);
         
@@ -336,7 +350,7 @@ public class ParasiteGrabbing : ParasiteBehaviour
         if(time >= 1f)
         {
             time = 0f;
-            player.gameObject.GetComponent<PlayerController>().GetHurt(10);
+            player.gameObject.GetComponent<PlayerController>().GetHurt(5);
         }
         if (CheckGrabbed())
         {

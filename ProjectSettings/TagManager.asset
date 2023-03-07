@@ -17,10 +17,10 @@ TagManager:
   - OnlyPlayer
   - Enemy
   - Weapon
-  - 
-  - 
-  - 
-  - 
+  - Lift
+  - ButtonInteraction
+  - ElectricWater
+  - Bullet
   - 
   - 
   - 

@@ -43,6 +43,9 @@ public class Parasite : MonoBehaviour
         {
            
             OVRInput.SetControllerVibration(.1f, .5f, grabbable.grabbedBy == leftHand ? OVRInput.Controller.LHand : OVRInput.Controller.RHand);
+        } else if (inFace)
+        {
+            transform.localPosition = new Vector3(0, 0f, 0);
         }
     }
 
@@ -67,10 +70,13 @@ public class Parasite : MonoBehaviour
         }
     }
 
+
+    private bool inFace = false;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Face"))
+        if(other.CompareTag("Face") && other.gameObject.transform.childCount == 0)
         {
+            inFace = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             transform.parent = other.gameObject.transform;

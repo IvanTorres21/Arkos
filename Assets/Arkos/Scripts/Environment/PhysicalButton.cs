@@ -30,13 +30,9 @@ public class PhysicalButton : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other == presser)
-        {
-            Debug.Log("oh!");
-            button.transform.localPosition = new Vector3(button.transform.localPosition.x, 0.827f, button.transform.localPosition.z);
-            clicked.Invoke();
-            isPressed = false;
-            presser = null;
-        }
+        button.transform.localPosition = new Vector3(button.transform.localPosition.x, 0.827f, button.transform.localPosition.z);
+        clicked.Invoke();
+        isPressed = false;
+        presser = null;
     }
 }

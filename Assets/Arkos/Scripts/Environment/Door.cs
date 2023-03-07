@@ -8,11 +8,13 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void OpenDoor()
     {
+        GetComponent<AudioSource>().Play();
+        Debug.LogWarning("DoorOpened");
         anim.SetTrigger("Open");
     }
 
